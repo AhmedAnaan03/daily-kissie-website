@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Message</title>
+    <title>Daily Kissie</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -30,7 +30,7 @@
             color: #4CAF50;
             margin-bottom: 20px;
         }
-        .message {
+        .kissie {
             font-size: 24px;
             margin: 20px 0;
             background: #e8f5e9;
@@ -63,32 +63,32 @@
 <body>
     <div class="container">
         <h1>Today's Kissie</h1>
-        <div class="message" id="message">Loading...</div>
+        <div class="kissie" id="kissie">Loading...</div>
         <h2>Previous Kissies</h2>
         <div class="calendar" id="calendar">Loading...</div>
         <div class="footer">
-            &copy; 2024 Daily Kissie Website: for my Dhonu
+            &copy; 2024 Daily Kissie Website
         </div>
     </div>
     <script>
-        async function loadMessage() {
-            const response = await fetch('/message.json');
+        async function loadKissie() {
+            const response = await fetch('/kissie.json');
             const data = await response.json();
-            document.getElementById('message').innerText = data.message;
+            document.getElementById('kissie').innerText = data.kissie;
         }
 
         async function loadCalendar() {
             const response = await fetch('/calendar.json');
             const data = await response.json();
             const calendar = document.getElementById('calendar');
-            data.messages.forEach(msg => {
+            data.kissies.forEach(kissie => {
                 const entry = document.createElement('div');
-                entry.innerText = `${msg.date}: ${msg.message}`;
+                entry.innerText = `${kissie.date}: ${kissie.kissie}`;
                 calendar.appendChild(entry);
             });
         }
 
-        loadMessage();
+        loadKissie();
         loadCalendar();
     </script>
 </body>
